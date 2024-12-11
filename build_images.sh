@@ -18,11 +18,3 @@ echo "Building kafka-connect image"
 DOCKER_DEFAULT_PLATFORM="linux/amd64" docker build -t "kafka-connect" .
 docker tag "kafka-connect:latest" "${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/kafka-connect:latest"
 docker push "${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/kafka-connect:latest"
-
-echo "Building prometheus image"
-
-cd prometheus/
-DOCKER_DEFAULT_PLATFORM="linux/amd64" docker build -t "prometheus" .
-docker tag "prometheus:latest" "${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/prometheus:latest"
-docker push "${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/prometheus:latest"
-cd -

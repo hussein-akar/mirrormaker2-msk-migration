@@ -1,19 +1,23 @@
 {
     "name": "mm2-cpc",
+    "tasks.max": "2",
     "connector.class": "org.apache.kafka.connect.mirror.MirrorCheckpointConnector",
+    "replication.policy.class": "com.amazonaws.kafka.samples.CustomMM2ReplicationPolicy",
+
     "clusters": "msksource,mskdest",
     "source.cluster.alias": "msksource",
     "target.cluster.alias": "mskdest",
-    "target.cluster.bootstrap.servers": "{TARGET CLUSTER BROKERS ADDRESS}",
+
     "source.cluster.bootstrap.servers": "{SOURCE CLUSTER BROKERS ADDRESS}",
     "source.cluster.security.protocol": "SASL_SSL",
-    "source.cluster.sasl.mechanism" : "SCRAM-SHA-512",
-    "source.cluster.sasl.jaas.config" :" org.apache.kafka.common.security.scram.ScramLoginModule required  username=\"USERNAME\"  password=\"PASSWORD\"; ",
+    "source.cluster.sasl.mechanism" : "PLAIN",
+    "source.cluster.sasl.jaas.config" : "org.apache.kafka.common.security.plain.PlainLoginModule required username='SOURCE_USERNAME' password='SOURCE_PASSWORD';",
+
+    "target.cluster.bootstrap.servers": "{TARGET CLUSTER BROKERS ADDRESS}",
     "target.cluster.security.protocol": "SASL_SSL",
     "target.cluster.sasl.mechanism" : "SCRAM-SHA-512",
-    "target.cluster.sasl.jaas.config" :" org.apache.kafka.common.security.scram.ScramLoginModule required  username=\"USERNAME\"  password=\"PASSWORD\"; ",
-    "replication.policy.class": "com.amazonaws.kafka.samples.CustomMM2ReplicationPolicy",
-    "tasks.max": "2",
+    "target.cluster.sasl.jaas.config" : "org.apache.kafka.common.security.scram.ScramLoginModule required username='USERNAME' password='PASSWORD';",
+
     "key.converter": " org.apache.kafka.connect.converters.ByteArrayConverter",
     "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
     "replication.factor": "3",

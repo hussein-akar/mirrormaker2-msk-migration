@@ -8,11 +8,13 @@ echo -e "\n\n\nUpdated file contents:\n $(cat /etc/hosts)"
 
 echo $BROKERS $GROUP
 sed -i "s/BROKERS/${BROKERS}/g" /opt/connect-distributed.properties
+sed -i "s/BROKER_USER/${BROKER_USER}/g" /opt/connect-distributed.properties
+sed -i "s/BROKER_PASSWORD/${BROKER_PASSWORD}/g" /opt/connect-distributed.properties
 sed -i "s/GROUP/${GROUP}/g" /opt/connect-distributed.properties
-
-# use IAM authentication instead
-# sed -i "s/USERNAME/${USERNAME}/g" /opt/connect-distributed.properties
-# sed -i "s/PASSWORD/${PASSWORD}/g" /opt/connect-distributed.properties
+sed -i "s/SCHEMA_REGISTRY_URL/${SCHEMA_REGISTRY_URL}/g" /opt/connect-distributed.properties
+sed -i "s/SCHEMA_REGISTRY_URL/${SCHEMA_REGISTRY_URL}/g" /opt/connect-distributed.properties
+sed -i "s/SCHEMA_REGISTRY_KEY/${SCHEMA_REGISTRY_KEY}/g" /opt/connect-distributed.properties
+sed -i "s/SCHEMA_REGISTRY_SECRET/${SCHEMA_REGISTRY_SECRET}/g" /opt/connect-distributed.properties
 
 echo Starting Kafka connect
 
